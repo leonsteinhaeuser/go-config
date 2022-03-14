@@ -1,6 +1,7 @@
 # go-config
 
 [![unit-tests](https://github.com/leonsteinhaeuser/go-config/actions/workflows/tests.yml/badge.svg)](https://github.com/leonsteinhaeuser/go-config/actions/workflows/tests.yml)
+[![codecov](https://codecov.io/gh/leonsteinhaeuser/go-config/branch/main/graph/badge.svg?token=1SPOPEBEWJ)](https://codecov.io/gh/leonsteinhaeuser/go-config)
 
 This repository provides a library that automatically detects the file extension and parses the data into the desired struct. If these steps were successful, the library will overload the parsed configuration with the desired environment variables.
 
