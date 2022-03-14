@@ -81,29 +81,16 @@ func loadAndParseFile(filePath string, receiver interface{}, f format) error {
 	}
 	switch f {
 	case YAML:
-		err := yaml.Unmarshal(bts, receiver)
-		if err != nil {
-			return err
-		}
+		return yaml.Unmarshal(bts, receiver)
 	case JSON:
-		err := json.Unmarshal(bts, receiver)
-		if err != nil {
-			return err
-		}
+		return json.Unmarshal(bts, receiver)
 	case TOML:
-		err := toml.Unmarshal(bts, receiver)
-		if err != nil {
-			return err
-		}
+		return toml.Unmarshal(bts, receiver)
 	case HCL:
-		err := hcl.Unmarshal(bts, receiver)
-		if err != nil {
-			return err
-		}
+		return hcl.Unmarshal(bts, receiver)
 	default:
 		return fmt.Errorf("unsupported format: %s", f)
 	}
-	return nil
 }
 
 // prefixString returns the string s with prefix p.
