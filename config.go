@@ -10,7 +10,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/hashicorp/hcl"
+	"github.com/alecthomas/hcl"
 	"github.com/pelletier/go-toml"
 	"gopkg.in/yaml.v3"
 )
@@ -88,6 +88,8 @@ func loadAndParseFile(filePath string, receiver interface{}, f format) error {
 		return toml.Unmarshal(bts, receiver)
 	case HCL:
 		return hcl.Unmarshal(bts, receiver)
+		//return hcl.Unmarshal(bts, receiver)
+		//return hcl.Unmarshal(bts, receiver)
 	default:
 		return fmt.Errorf("unsupported format: %s", f)
 	}

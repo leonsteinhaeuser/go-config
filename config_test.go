@@ -8,20 +8,20 @@ import (
 )
 
 type ExampleConfigA struct {
-	Name     string
-	Age      int
-	Size     float64
-	IsActive bool
-	Uint     int64
-	Hosts    []string
-	Children ExampleConfigB
+	Name     string         `hcl:"name"`
+	Age      int            `hcl:"age"`
+	Size     float64        `hcl:"size"`
+	IsActive bool           `hcl:"is_active"`
+	Uint     int64          `hcl:"uint"`
+	Hosts    []string       `hcl:"hosts,block"`
+	Children ExampleConfigB `hcl:"children,block"`
 }
 
 type ExampleConfigB struct {
-	Name     string
-	Age      int
-	Size     float64
-	IsActive bool
+	Name     string  `hcl:"name,label"`
+	Age      int     `hcl:"age"`
+	Size     float64 `hcl:"size"`
+	IsActive bool    `hcl:"is_active"`
 }
 
 func TestAutoloadAndEnrichConfigWithEnvPrefix(t *testing.T) {
@@ -143,7 +143,7 @@ func TestAutoloadAndEnrichConfigWithEnvPrefix(t *testing.T) {
 
 		// with env vars
 		{
-			name: "yaml",
+			name: "yaml with env",
 			args: args{
 				filePath: ".file/simple.yml",
 				receiver: &ExampleConfigA{},
@@ -180,7 +180,7 @@ func TestAutoloadAndEnrichConfigWithEnvPrefix(t *testing.T) {
 			wantErr: false,
 		},
 		{
-			name: "json",
+			name: "json with env",
 			args: args{
 				filePath: ".file/simple.json",
 				receiver: &ExampleConfigA{},
@@ -217,7 +217,7 @@ func TestAutoloadAndEnrichConfigWithEnvPrefix(t *testing.T) {
 			wantErr: false,
 		},
 		{
-			name: "toml",
+			name: "toml with env",
 			args: args{
 				filePath: ".file/simple.toml",
 				receiver: &ExampleConfigA{},
@@ -254,7 +254,7 @@ func TestAutoloadAndEnrichConfigWithEnvPrefix(t *testing.T) {
 			wantErr: false,
 		},
 		{
-			name: "hcl",
+			name: "hcl with env",
 			args: args{
 				filePath: ".file/simple.hcl",
 				receiver: &ExampleConfigA{},
